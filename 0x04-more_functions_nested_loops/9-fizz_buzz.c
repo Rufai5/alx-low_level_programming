@@ -25,7 +25,7 @@ int main(void)
 		else if (h % 3 == 0)
 			printf("Fizz");
 		else
-			printf("%d ", h);
+			printf("%d", h);
 		h++;
 
 	}
