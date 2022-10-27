@@ -9,31 +9,31 @@
  */
 void print_line(char *b, int c, int size)
 {
-	int byte, index;
+	int i = 0;
 
-	for (byte = 0; byte < size; byte += 10)
+	printf("%08x: ", c);
+
+	while (i < 10)
 	{
-		printf("%08x: ", byte);
-
-		for (index = 0; index < 10; index++)
-		{
-			if ((index + byte) >= size)
-				printf("  ");
-		}
-		for (index = 0; index < 10; index++)
-		{
-			if ((index + byte) >= size)
-				break;
-			else if (*(b + index + byte) >= 31 &&
-					*(b + index + byte) <= 126)
-				printf("%c", *(b + index + byte));
-			else
-				printf(".");
-		}
-		if (byte >= size)
-			continue;
-		printf("\n");
+		if (i + c >= size)
+			printf("  ");
+		else
+			printf("%02x", b[i + c]);
+		if (i % 2 != 0)
+			printf(" ");
+		i++;
 	}
-	if (size <= 0)
-		printf("\n");
+	i = 0;
+	while (i < 10)
+	{
+		if (i + c < size)
+		{
+			if ((b[i + c] < 32 || b[i + c] > 126))
+				printf(".");
+			else
+				printf("%c", b[i + c]);
+		}
+		i++;
+	}
+	printf("\n");
 }
