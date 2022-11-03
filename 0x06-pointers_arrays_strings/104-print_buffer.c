@@ -37,3 +37,23 @@ void print_line(char *b, int c, int size)
 	}
 	printf("\n");
 }
+
+/**
+ * print_buffer - prints a buffer
+ * @b: the pointed buffer
+ * @size: the size of the content to print
+ */
+void print_buffer(char *b, int size)
+{
+	int i = 0;
+
+	if (size <= 0)
+	printf("\n");
+	else
+
+	while (i < size)
+	{
+		print_line(b, i, size);
+		i += 10;
+	}
+}
