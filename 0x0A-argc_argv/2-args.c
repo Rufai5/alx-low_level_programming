@@ -1,18 +1,20 @@
 #include <stdio.h>
-/**
- * main - entry point
- * Prints all the arguments it receives
- * @argc: size of argv
- * @argv: array of pointers to strings
- * Return: 0 if successful
- */
-int main(int __attribute__((__unused__)) argc, char *argv[])
-{
-	int i;
+#include <stdlib.h>
 
-	for (i = 0; i < argc; i++)
+/**
+ * main - prints all the arguments
+ * @argc: number of arguments
+ * @argv: array of arguments
+ *
+ * Return: Always (0) success
+ */
+int main(int argc, char *argv[])
+{
+	int n;
+
+	for (n = 0; n < argc; n++)
 	{
-		printf("%s\n", argv[i]);
+		printf("%s\n", argv[n]);
 		return (0);
 	}
 }
