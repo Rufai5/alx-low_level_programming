@@ -5,16 +5,14 @@
  * main - prints all the arguments
  * @argc: number of arguments
  * @argv: array of arguments
- *
- * Return: Always (0) success
+ * Return: returns 0
  */
 int main(int argc, char *argv[])
 {
-	int n;
+	int i;
 
-	for (n = 0; n < argc; n++)
-	{
-		printf("%s\n", argv[n]);
-		return (0);
-	}
+	for (i = 0; i < argc; i++)
+		printf("%s\n", argv[i]);
+
+	return (0);
 }
