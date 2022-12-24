@@ -1,21 +1,21 @@
 #include "main.h"
-
 /**
- * string_toupper - changes all lowercase letters to uppercase
- * @str: string to be changed
- *
- * Return: address tp the string
+ * string_toupper - change lowercase to uppercase
+ * @s:string
+ * Return:char
  */
-
-char *string_toupper(char *str)
+char *string_toupper(char *s)
 {
-	int i = 0;
 
-	while (str[i] != '\0')
+	int i;
+
+i = 0;
+	while (*(s + i))
 	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-			str[i] -= 32;
+		if (*(s + i) >= 'a' && *(s + i) <= 'z')
+			*(s + i) -= 'a' - 'A';
 		i++;
 	}
-	return (str);
+	return (s);
 }
+/*Bwave ICT */

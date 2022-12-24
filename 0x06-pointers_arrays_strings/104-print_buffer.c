@@ -2,58 +2,60 @@
 #include <stdio.h>
 
 /**
- * print_line - prints a buffer line
- * @b: the pointed buffer
- * @c: the current position in buffer
- * @size: the max size of the content to print
+ * print_line - prints a s bytes of a buffer
+ * @c: buffer to print
+ * @s: bytes of buffer to print
+ * @l: line of buffer to print
+ *
+ * Return: void
  */
-void print_line(char *b, int c, int size)
+
+void print_line(char *c, int s, int l)
 {
-	int i = 0;
+	int j, k;
 
-	printf("%08x: ", c);
-
-	while (i < 10)
+	for (j = 0; j <= 9; j++)
 	{
-		if (i + c >= size)
-			printf("  ");
+		if (j <= s)
+			printf("%02x", c[l * 10 + j]);
 		else
-			printf("%02x", b[i + c]);
-		if (i % 2 != 0)
-			printf(" ");
-		i++;
+			printf("  ");
+		if (j % 2)
+			putchar(' ');
 	}
-	i = 0;
-	while (i < 10)
+	for (k = 0; k <= s; k++)
 	{
-		if (i + c < size)
-		{
-			if ((b[i + c] < 32 || b[i + c] > 126))
-				printf(".");
-			else
-				printf("%c", b[i + c]);
-		}
-		i++;
+		if (c[l * 10 + k] > 31 && c[l * 10 + k] < 127)
+			putchar(c[l * 10 + k]);
+		else
+			putchar('.');
 	}
-	printf("\n");
 }
 
 /**
  * print_buffer - prints a buffer
- * @b: the pointed buffer
- * @size: the size of the content to print
+ * @b: buffer to print
+ * @size: size of buffer
+ *
+ * Return: void
  */
 void print_buffer(char *b, int size)
 {
-	int i = 0;
+	int i;
 
-	if (size <= 0)
-	printf("\n");
-	else
-
-	while (i < size)
+	for (i = 0; i <= (size - 1) / 10 && size; i++)
 	{
-		print_line(b, i, size);
-		i += 10;
+		printf("%08x: ", i * 10);
+		if (i < size / 10)
+		{
+			print_line(b, 9, i);
+		}
+		else
+		{
+			print_line(b, size % 10 - 1, i);
+		}
+		putchar('\n');
 	}
+	if (size == 0)
+		putchar('\n');
 }
