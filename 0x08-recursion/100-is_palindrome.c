@@ -1,45 +1,45 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * palind2 - obtains length of a
- * @a: string
- * @l: integer to count length
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately
+ * _strlen_recursion - returns the length of a string.
+ * @s: string
+ * Return: the length of a string.
  */
-int palind2(char *a, int l)
+int _strlen_recursion(char *s)
 {
-	if (*a == 0)
-		return (l - 1);
-	return (palind2(a + 1, l + 1));
-}
-
-/**
- * palind3 - compares string vs string reverse
- * @a: string
- * @l: length
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately
- */
-int palind3(char *a, int l)
-{
-	if (*a != *(a + l))
+	if (*s == '\0')
 		return (0);
-	else if (*a == 0)
-		return (1);
-	return (palind3(a + 1, l - 2));
+	else
+		return (1 + _strlen_recursion(s + 1));
 }
+
 /**
- * is_palindrome - checks if a string is a palindrome
- *  @s: string to evaluate
- *  Return: On success 1
- *  On error, -1 is returned, and errno is set appropriately
+ * comparator - compares each character of the string.
+ * @s: string
+ * @n1: smallest iterator.
+ * @n2: biggest iterator.
+ * Return: .
+ */
+int comparator(char *s, int n1, int n2)
+{
+	if (*(s + n1) == *(s + n2))
+	{
+		if (n1 == n2 || n1 == n2 + 1)
+			return (1);
+		return (0 + comparator(s, n1 + 1, n2 - 1));
+	}
+	return (0);
+}
+
+/**
+ * is_palindrome - detects if a string is a palindrome.
+ * @s: string.
+ * Return: 1 if s is a palindrome, 0 if not.
  */
 int is_palindrome(char *s)
 {
-	int l;
-
-	l = palind2(s, 0);
-	return (palind3(s, l));
+	if (*s == '\0')
+		return (1);
+	return (comparator(s, 0, _strlen_recursion(s) - 1));
 }

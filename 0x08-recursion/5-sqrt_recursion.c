@@ -1,29 +1,35 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * sqrt2 - Makes possible to evaluate from 1 to n
- * @a: same number as n
- * @b: number that iterates from 1 to n
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately
+ * power_operation - returns the natural square root of a number.
+ * @n: input number.
+ * @c: iterator.
+ * Return: square root or -1.
  */
-int sqrt2(int a, int b)
+int power_operation(int n, int c)
 {
-	if (b * b == a)
-		return (b);
-	else if (b * b > a)
-		return (-1);
-	return (sqrt2(a, b + 1));
+	if (c % (n / c) == 0)
+	{
+		if (c * (n / c) == n)
+			return (c);
+		else
+			return (-1);
+	}
+	return (0 + power_operation(n, c + 1));
 }
-
 /**
- * _sqrt_recursion - returns the natural square root of n
- * @n: Number Integer
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately
+ * * _sqrt_recursion - returns the natural square root of a number.
+ * @n: input number.
+ * Return: natural square root.
  */
 int _sqrt_recursion(int n)
 {
-	return (sqrt2(n, 1));
+	if (n < 0)
+		return (-1);
+	if (n == 0)
+		return (0);
+	if (n == 1)
+		return (1);
+	return (power_operation(n, 2));
 }
